@@ -1,8 +1,8 @@
- 
+
 import Subcategory from './Subcategory';
 
 
-const Header = ({ setCategory, category })=> {
+const Header = ({ setCategory, category, score })=> {
   const categories = ['Javascript', 'React', 'Frontend', 'Backend'];
   const categoryClick = (el)=> {
     //if you click the category once it will be added to category array, if you click the same category twice it will be removed from the category array
@@ -19,9 +19,9 @@ const Header = ({ setCategory, category })=> {
   return (
     <>
       <h1>Interview Questions Flashcards</h1> 
-      <div>score</div>
-      <div>Edit Categories</div>
-      {categories.map(el => <Subcategory key={el} el={el} categoryClick={categoryClick} />)}
+      <div>{score}</div>
+      <h3>Topics</h3>
+      {categories.map((el,i) => <Subcategory key={el+i} el={el} categoryClick={categoryClick} />)}
       <button onClick={()=> getQuestions(category)} >Get Questions</button>
     </>
   );
