@@ -14,6 +14,7 @@ const http = require('http');
     resolvers,
     csrfPrevention: true,
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+    mocks:true
   });
 
   // More required logic for integrating with Express

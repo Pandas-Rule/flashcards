@@ -1,9 +1,7 @@
 import Header from './components/Header'; 
 import Flashcard from './components/Flashcard';
 import React, { useEffect, useState } from 'react';
-import './styles.css';
-
-
+import '../styles.css';
 
 function App() {
   const [ category, setCategory ] = useState([]);

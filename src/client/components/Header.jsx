@@ -1,4 +1,3 @@
-
 import Subcategory from './Subcategory';
 
 
@@ -10,11 +9,9 @@ const Header = ({ setCategory, category, score })=> {
   };
 
   const getQuestions = (category)=> {
-    ; 
-    fetch('/api/'+ category.join('-'))
-      .then()
-
-  }
+    // console
+    console.log('should display question')
+  };
 
   return (
     <>

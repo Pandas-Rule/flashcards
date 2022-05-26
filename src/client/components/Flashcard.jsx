@@ -1,22 +1,32 @@
-import Button from './Button';
 import React, {useEffect, useState} from 'react';
-
+import {getAllCards} from '../queries';
+import { useQuery } from '@apollo/client'; 
 
 const Flashcard = ({ category, setScore })=> { 
-
   const [ front, setFront ] = useState(true); 
   const [question, setQuestion]= useState('');
   const [answer, setAnswer] = useState('');
 
+  useEffect(()=> {
+    console.log(front);
+    },[front])
+
+  const { loading, error, data } = useQuery(getAllCards, { variables: { language: 'english'}})
+  if (loading) return 'loading...';
+
+  if (error) return `ERROR! ${error.message}`;
+
+  
+
 // getQuestions function
 
-const getQuestions = (category)=> {
-// graphQL get request for questions
+// const getQuestions = (category)=> {
+// // graphQL get request for questions
 
-// setQuestion 
-setQuestion()
-setAnswer();
-};
+// // setQuestion 
+// setQuestion()
+// setAnswer();
+// };
 // graphQl fetch for the answer
 const answerFunc = (e)=> {
   //
@@ -34,14 +44,13 @@ const editFunc = (()=> {
 // const ButtonNames = {'Answer': answerFunc, 'Next': nextFunc, 'Edit Question': editFunc, 'Correct': setScore};
 
 
-useEffect(()=> {
-  console.log(front);
-  },[front])
+
 
 
   return (
     <>
       <div id='flashcard'>
+        {data?.getAllCards?.map(el => <h1 key={el.id}>{el.question}</h1>)}
         <h3>{front ? question : answer }</h3> 
         { front 
           ? [<button key='answer1' handleClick={answerFunc}>Answer</button>,<button key='next1' handleClick={nextFunc}>Next</button>] 
